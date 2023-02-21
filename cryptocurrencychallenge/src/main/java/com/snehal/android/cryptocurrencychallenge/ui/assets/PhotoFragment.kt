@@ -10,15 +10,15 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.snehal.android.cryptocurrencychallenge.R
 import com.snehal.android.cryptocurrencychallenge.ViewModel
-import com.snehal.android.cryptocurrencychallenge.data.model.assets.AssetsApiData
-import com.snehal.android.cryptocurrencychallenge.databinding.FragmentAssetsBinding
-import com.snehal.android.cryptocurrencychallenge.ui.market.MarketFragment
+import com.snehal.android.cryptocurrencychallenge.data.model.PhotosData
+import com.snehal.android.cryptocurrencychallenge.databinding.FragmentPhotoBinding
+import com.snehal.android.cryptocurrencychallenge.ui.market.DescFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AssetsFragment : Fragment() {
+class PhotoFragment : Fragment() {
 
-    private lateinit var binding: FragmentAssetsBinding
+    private lateinit var binding: FragmentPhotoBinding
 
     private val viewModel: ViewModel by viewModels()
     private lateinit var assetsAdapter: AssetsAdapter
@@ -27,27 +27,30 @@ class AssetsFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAssetsBinding.inflate(layoutInflater)
-        viewModel.getAssetsData()
+        binding = FragmentPhotoBinding.inflate(layoutInflater)
+        viewModel.getPhotosData()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.assetApiData.observe(viewLifecycleOwner, { data->
-            bindListData(assets = data)
+        viewModel.apiData.observe(viewLifecycleOwner, { data->
+            bindListData(photosData = data)
         })
     }
 
-    private fun bindListData(assets: AssetsApiData) {
+    private fun bindListData(photosData: List<PhotosData>) {
         binding.progressBarAssets.visibility = View.GONE
-        if (!(assets.assetData.isNullOrEmpty())) {
+        if (!(photosData.isNullOrEmpty())) {
             assetsAdapter = AssetsAdapter(
-                assets.assetData,
-                listener = AssetsAdapter.OnClickListener { id ->
+                photosData,
+                listener = AssetsAdapter.OnClickListener { id,albumId,url,title ->
                     val bundle = Bundle()
-                    bundle.putString("data", id)
-                    val fragment = MarketFragment.newInstance()
+                    bundle.putInt("dataId", id)
+                    bundle.putInt("dataAlbumId", albumId)
+                    bundle.putString("dataUrl", url)
+                    bundle.putString("dataTitle", title)
+                    val fragment = DescFragment.newInstance()
                     fragment.arguments = bundle
                     requireFragmentManager().beginTransaction().apply {
                         replace(R.id.fragmentContainerHome, fragment, "Market_Fragment")

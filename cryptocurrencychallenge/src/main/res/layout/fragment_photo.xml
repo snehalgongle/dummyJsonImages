@@ -5,7 +5,7 @@
     android:id="@+id/assets"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.assets.AssetsFragment">
+    tools:context=".ui.assets.PhotoFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewAssets"

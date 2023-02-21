@@ -1,7 +1,7 @@
 package com.snehal.android.cryptocurrencychallenge.di
 
-import com.snehal.android.cryptocurrencychallenge.data.CAPCOIN_ENDPOINT_HOST
 import com.snehal.android.cryptocurrencychallenge.data.CoincapService
+import com.snehal.android.cryptocurrencychallenge.data.PHOTOS_ENDPOINT_HOST
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +18,7 @@ object DataModule {
     @Singleton
     fun provideCoincapService(): CoincapService {
         return Retrofit.Builder()
-            .baseUrl(CAPCOIN_ENDPOINT_HOST)
+            .baseUrl(PHOTOS_ENDPOINT_HOST)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(CoincapService::class.java)

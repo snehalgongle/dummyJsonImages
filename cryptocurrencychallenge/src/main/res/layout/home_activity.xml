@@ -8,7 +8,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerHome"
-        android:name="com.snehal.android.cryptocurrencychallenge.ui.assets.AssetsFragment"
+        android:name="com.snehal.android.cryptocurrencychallenge.ui.assets.PhotoFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

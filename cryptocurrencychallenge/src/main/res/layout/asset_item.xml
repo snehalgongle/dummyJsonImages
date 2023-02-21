@@ -15,45 +15,31 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+
+
+            <ImageView
+                android:id="@+id/imgPhoto"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="fitXY"
+                android:layout_margin="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
-                android:id="@+id/textViewAssetName"
-                android:layout_width="0dp"
+                android:id="@+id/textViewTitle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                tools:text="Bitcoin" />
-
-            <TextView
-                android:id="@+id/textViewAssetCode"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_margin="8dp"
                 android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="3"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewAssetName"
-                tools:text="BTC" />
-
-            <TextView
-                android:id="@+id/textViewAssetPrice"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:layout_marginStart="22dp"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/textViewAssetCode"
-                app:layout_constraintTop_toBottomOf="@+id/textViewAssetName"
-                tools:text="6929.8217756835584756" />
+                app:layout_constraintLeft_toRightOf="@id/imgPhoto"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
