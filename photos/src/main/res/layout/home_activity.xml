@@ -8,7 +8,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerHome"
-        android:name="com.snehal.android.photosapp.ui.photos.PhotoFragment"
+        android:name="com.snehal.android.photosapp.ui.login.LoginFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
