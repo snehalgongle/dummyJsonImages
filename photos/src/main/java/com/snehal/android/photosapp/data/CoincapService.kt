@@ -3,10 +3,8 @@ package com.snehal.android.photosapp.data
 import com.snehal.android.photosapp.data.model.Data
 import com.snehal.android.photosapp.data.model.Login
 import com.snehal.android.photosapp.data.model.Product
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.Response
+import retrofit2.http.*
 
 const val PHOTOS_ENDPOINT_HOST = "https://dummyjson.com"
 
@@ -21,6 +19,10 @@ interface CoincapService {
     @GET("/products/search")
     suspend fun getSearch(@Query("q") title: String?): Data
 
+    @FormUrlEncoded
     @POST("/auth/login")
-    suspend fun getLogin(@Query("username") user: String,@Query("password")pass :String):Login
+    suspend fun getLogin(
+        @Field("username")  user: String,
+        @Field("password") pass: String
+    ): Response<Login>
 }

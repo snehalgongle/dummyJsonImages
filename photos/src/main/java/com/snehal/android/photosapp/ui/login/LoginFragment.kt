@@ -32,16 +32,22 @@ class LoginFragment : Fragment() {
         binding.btnContinue.setOnClickListener {
             binding.progressBarLogin.visibility= View.VISIBLE
             viewModel.getLogin(binding.edtUser.text.toString(),binding.edtPass.text.toString())
-            moveToDashboard()
         }
+        viewModel.loginData.observe(viewLifecycleOwner,{ login->
+                moveToDashboard()
+        })
+        viewModel.loginErrorData.observe(viewLifecycleOwner,{
+           binding.progressBarLogin.visibility= View.GONE
+           Toast.makeText(requireContext(),"Invalid credentials",Toast.LENGTH_SHORT).show()
+        })
     }
 
     private fun moveToDashboard() {
         binding.progressBarLogin.visibility= View.GONE
         val fragment = PhotoFragment.newInstance()
         requireFragmentManager().beginTransaction().apply {
-            replace(R.id.fragmentContainerHome, fragment, "Photo_Fragment")
-            addToBackStack("Photo_Fragment")
+            replace(R.id.fragmentContainerHome, fragment, "Asset_Fragment")
+            addToBackStack("Asset_Fragment")
             commit()
         }
     }

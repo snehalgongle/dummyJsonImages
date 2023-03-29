@@ -9,4 +9,4 @@ data class Login (
     val gender: String,
     val image: String,
     val token: String
-    )
+)

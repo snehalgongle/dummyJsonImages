@@ -18,6 +18,7 @@ class ViewModel @Inject constructor(
     val apiData = MutableLiveData<Data>()
     val productData = MutableLiveData<Product>()
     val loginData =MutableLiveData<Login>()
+    val loginErrorData =MutableLiveData<String>()
 
     fun getPhotosData() {
         viewModelScope.launch {
@@ -57,7 +58,11 @@ class ViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val data = api.getLogin(user,pass)
-                loginData.postValue(data)
+                if(data.isSuccessful) {
+                    loginData.postValue(data.body())
+                }else{
+                    loginErrorData.postValue("Invalid credentials")
+                }
             } catch (ex: Exception) {
                 ex.stackTrace
             }
